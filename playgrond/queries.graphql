@@ -1,0 +1,95 @@
+mutation createUser {
+  createUser(data: { name: "Kalle Ahola", email: "kalle@gmail.com" }) {
+    id
+    name
+    email
+  }
+}
+
+mutation updateUser {
+  updateUser(
+    where: { id: "ck7xgpawl005p0905wmauswa4" }
+    data: { name: "Jesse Owens" }
+  ) {
+    name
+    id
+  }
+}
+
+query Users {
+  users {
+    name
+    id
+    email
+  }
+}
+
+mutation deleteUser {
+  deleteUser(where: { id: "ck7xgpawl005p0905wmauswa4" }) {
+    id
+    name
+  }
+}
+
+mutation createPost {
+  createPost(
+    data: {
+      title: "Prisma post"
+      body: "graphql schmas"
+      published: false
+      author: { connect: { id: "ck7xi2jjg00s30905xfcu85x0" } }
+    }
+  ) {
+    id
+    title
+    body
+    author {
+      id
+      name
+    }
+  }
+}
+
+query Posts {
+  posts {
+    id
+    title
+    body
+  }
+  comments {
+    id
+    text
+    author {
+      name
+      id
+    }
+  }
+}
+
+query Comments {
+  comments {
+    id
+    text
+    author {
+      id
+      name
+    }
+  }
+}
+
+mutation createComment {
+  createComment(
+    data: {
+      text: "1st comment from Prisma"
+      author: { connect: { id: "ck7xi2jjg00s30905xfcu85x0" } }
+      post: { connect: { id: "ck7xk25la01y10905glri6ij4" } }
+    }
+  ) {
+    id
+    text
+    author {
+      id
+      name
+    }
+  }
+}
