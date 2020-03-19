@@ -74,7 +74,7 @@ const updatePostForUser = async (postId, data) => {
 updatePostForUser('ck7xjeesq01l30905gnv5xpcr',
   {
     published: false,
-    title: 'More comments part 3'
+    title: 'More comments part 4'
   }, {
 }).then((post) => {
   console.log(JSON.stringify(post, undefined, 2))
