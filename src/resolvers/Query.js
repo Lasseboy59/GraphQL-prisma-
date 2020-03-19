@@ -27,21 +27,12 @@ const Query = {
         }]
       }
     }
-
-
-    // if (!args.query) {
-    //   return db.posts
-    // }
-
-    // return db.posts.filter((post) => {
-    //   const isTitleMatch = post.title.toLowerCase().includes(args.query.toLowerCase())
-    //   const isBodyMatch = post.body.toLowerCase().includes(args.query.toLowerCase())
-    //   return isTitleMatch || isBodyMatch
-    // })
     return prisma.query.posts(opArgs, info)
   },
-  comments(parent, args, { db }, info) {
-    return db.comments
+  comments(parent, args, { prisma }, info) {
+    const opArgs = {}
+
+    return prisma.query.comments(opArgs, info)
   },
   me() {
     return {
