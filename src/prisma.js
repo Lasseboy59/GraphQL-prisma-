@@ -37,51 +37,45 @@ const createPostForUser = async (authorId, data) => {
 //   console.log(JSON.stringify(user, undefined, 2))
 // })
 
+// const updatePostForUser = async (postId, data) => {
+//   const post = await prisma.mutation.updatePost({
+//     where: {
+//       id: postId
+//     },
+//     data: {
+//       ...data,
+//     }
+//   }, '{author {id}}')
+//   const user = await prisma.query.user({
+//     where: {
+//       id: post.author.id
+//     }
+//   }, '{id name email posts {id title published}}')
+//   return user
+// }
+
 const updatePostForUser = async (postId, data) => {
+  const postExists = await prisma.exists.Post({ id: postId })
+
+  if (!postExists) {
+    throw new Error('Post not found')
+  }
+
   const post = await prisma.mutation.updatePost({
     where: {
       id: postId
     },
-    data: {
-      ...data,
-    }
-  }, '{author {id}}')
-  const user = await prisma.query.user({
-    where: {
-      id: post.author.id
-    }
-  }, '{id name email posts {id title published}}')
-  return user
+    data
+  }, '{ author { id name email posts { id title published } } }')
+
+  return post.author
 }
 
 updatePostForUser('ck7xjeesq01l30905gnv5xpcr',
   {
     published: false,
-    title: 'More comments'
+    title: 'More comments part 3'
   }, {
 }).then((post) => {
   console.log(JSON.stringify(post, undefined, 2))
 })
-
-// updatePostForUser('ck7xjeesq01l30905gnv5xpcr', {
-//   title: 'Udemy Classes #3',
-//   body: 'Learning Graphql ...',
-//   published: false
-// }).then((user) => {
-//   console.log(JSON.stringify(user, undefined, 2))
-// })
-
-// prisma.mutation.updatePost({
-//   where: {
-//     id: "ck7xjeesq01l30905gnv5xpcr"
-//   },
-//   data: {
-//     title: " Graph 104, more post from NodeJS",
-//     body: "hello there 104",
-//     published: true
-//   }
-// }, '{id}').then((data) => {
-//   return prisma.query.posts(null, '{ id title body published }')
-// }).then((data) => {
-//   console.log(data)
-// })
