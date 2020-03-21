@@ -93,3 +93,45 @@ mutation createComment {
     }
   }
 }
+
+mutation createUser {
+  createUser(data: { name: "samuli Saarela", email: "samuli@example.com" }) {
+    id
+    name
+    email
+  }
+}
+
+query users {
+  users {
+    id
+    name
+    email
+  }
+}
+
+mutation deleteUser {
+  deleteUser(id: "ck7yxalzj01ka090554a21jb9") {
+    id
+    name
+  }
+}
+
+query Comments {
+  comments {
+    id
+    text
+    author {
+      id
+      name
+    }
+  }
+}
+
+mutation updateUser {
+  updateUser(id: "ck7yl3p9o02du0805lfgircz3", data: { name: "Vikram Pelham" }) {
+    id
+    name
+    email
+  }
+}
