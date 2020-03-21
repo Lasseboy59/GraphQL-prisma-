@@ -135,3 +135,28 @@ mutation updateUser {
     email
   }
 }
+
+mutation createPost {
+  createPost(
+    data: {
+      title: "1st post"
+      body: "test post"
+      published: false
+      author: "ck7yia7az00v80805rfhv58yr"
+    }
+  ) {
+    id
+    title
+    published
+  }
+}
+
+mutation updateComment {
+  updateComment(
+    id: "ck81gov0700ja0805c4svg6ir"
+    data: { text: "corrected comment" }
+  ) {
+    id
+    text
+  }
+}
