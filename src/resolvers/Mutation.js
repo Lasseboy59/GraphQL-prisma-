@@ -51,15 +51,15 @@ const Mutation = {
   createComment(parent, args, { prisma }, info) {
     return prisma.mutation.createComment({
       data: {
-        text: args.dat.text,
+        text: args.data.text,
         author: {
           connect: {
             id: args.data.author
-          },
-          post: {
-            connect: {
-              id: args.data.post
-            }
+          }
+        },
+        post: {
+          connect: {
+            id: args.data.post
           }
         }
       }
