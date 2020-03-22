@@ -191,3 +191,17 @@ mutation login {
     token
   }
 }
+
+mutation createPost {
+  createPost(
+    data: { title: "Post under JWT A", body: "test post", published: true }
+  ) {
+    id
+    title
+    published
+    author {
+      id
+      name
+    }
+  }
+}
