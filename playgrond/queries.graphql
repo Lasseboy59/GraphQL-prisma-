@@ -160,3 +160,34 @@ mutation updateComment {
     text
   }
 }
+
+mutation createUser {
+  createUser(
+    data: { name: "Arvi Lind", email: "arvi@yle.fi", password: "red12345" }
+  ) {
+    user {
+      id
+      name
+      email
+    }
+    token
+  }
+}
+
+query users {
+  users {
+    id
+    name
+    email
+  }
+}
+
+mutation login {
+  login(data: { email: "arvi@yle.fi", password: "red12345" }) {
+    user {
+      name
+      id
+    }
+    token
+  }
+}
