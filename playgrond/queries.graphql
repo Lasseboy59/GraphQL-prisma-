@@ -1,22 +1,11 @@
-mutation createUser {
-  createUser(data: { name: "Kalle Ahola", email: "kalle@gmail.com" }) {
+mutation {
+  createUser(data: { name: "Vikram Horrible", email: "vikram@gmail.com" }) {
     id
     name
-    email
   }
 }
 
-mutation updateUser {
-  updateUser(
-    where: { id: "ck7xgpawl005p0905wmauswa4" }
-    data: { name: "Jesse Owens" }
-  ) {
-    name
-    id
-  }
-}
-
-query Users {
+query {
   users {
     name
     id
@@ -24,20 +13,30 @@ query Users {
   }
 }
 
-mutation deleteUser {
-  deleteUser(where: { id: "ck7xgpawl005p0905wmauswa4" }) {
+mutation {
+  updateUser(
+    where: { id: "ck72995ak00dx09633v9fxy6y" }
+    data: { name: "Erik" }
+  ) {
     id
     name
   }
 }
 
-mutation createPost {
+mutation {
+  deleteUser(where: { id: "ck729ef0i00ew0963w3ejetxf" }) {
+    id
+    name
+  }
+}
+
+mutation {
   createPost(
     data: {
       title: "Prisma post"
-      body: "graphql schmas"
+      body: ""
       published: false
-      author: { connect: { id: "ck7xi2jjg00s30905xfcu85x0" } }
+      author: { connect: { id: "ck7319ds800xd0963jb1xrwro" } }
     }
   ) {
     id
@@ -46,43 +45,31 @@ mutation createPost {
     author {
       id
       name
+      published
     }
   }
 }
 
-query Posts {
-  posts {
+mutation {
+  updatePost(
+    where: { id: "ck72995ak00dx09633v9fxy6y" }
+    data: { published: true }
+  ) {
     id
-    title
     body
-  }
-  comments {
-    id
-    text
+    title
     author {
-      name
-      id
-    }
-  }
-}
-
-query Comments {
-  comments {
-    id
-    text
-    author {
-      id
       name
     }
   }
 }
 
-mutation createComment {
+mutation {
   createComment(
     data: {
       text: "1st comment from Prisma"
-      author: { connect: { id: "ck7xi2jjg00s30905xfcu85x0" } }
-      post: { connect: { id: "ck7xk25la01y10905glri6ij4" } }
+      author: { connect: { id: "ck736e1rc00qk0863eggqyh1o" } }
+      post: { connect: { id: "ck733thae00900863ks9pnh1x" } }
     }
   ) {
     id
@@ -94,30 +81,7 @@ mutation createComment {
   }
 }
 
-mutation createUser {
-  createUser(data: { name: "samuli Saarela", email: "samuli@example.com" }) {
-    id
-    name
-    email
-  }
-}
-
-query users {
-  users {
-    id
-    name
-    email
-  }
-}
-
-mutation deleteUser {
-  deleteUser(id: "ck7yxalzj01ka090554a21jb9") {
-    id
-    name
-  }
-}
-
-query Comments {
+query {
   comments {
     id
     text
@@ -125,48 +89,263 @@ query Comments {
       id
       name
     }
+    post {
+      id
+    }
   }
 }
 
-mutation updateUser {
-  updateUser(id: "ck7yl3p9o02du0805lfgircz3", data: { name: "Vikram Pelham" }) {
-    id
-    name
-    email
-  }
-}
-
-mutation createPost {
-  createPost(
+mutation {
+  createBook(
     data: {
-      title: "1st post"
-      body: "test post"
-      published: false
-      author: "ck7yia7az00v80805rfhv58yr"
+      title: "East of Eden"
+      author: "M. Matis"
+      isbn: "dsjdkasdhkkalö-222"
     }
   ) {
     id
     title
+    author
+    isbn
+  }
+}
+
+mutation {
+  createUser(data: { username: "Timo Laukkanen" }) {
+    id
+    username
+  }
+}
+
+mutation {
+  createReview(
+    data: {
+      text: "A pleasant reding"
+      rating: 4
+      book: { connect: { id: "ck73mfb1g082t0863zv3sfxv1" } }
+      user: { connect: { id: "ck73mn1ze087n0863z0zr10kp" } }
+    }
+  ) {
+    book {
+      title
+      author
+      isbn
+    }
+    rating
+  }
+}
+
+query {
+  books {
+    title
+    id
+    isbn
+    reviews {
+      id
+      text
+      rating
+      user {
+        id
+        username
+      }
+    }
+  }
+}
+
+query {
+  books {
+    title
+    id
+    isbn
+    reviews {
+      id
+      text
+      rating
+      user {
+        id
+        username
+      }
+    }
+  }
+}
+
+mutation {
+  deleteBook(where: { id: "ck73mfb1g082t0863zv3sfxv1" }) {
+    id
+    isbn
+  }
+}
+
+mutation {
+  createPost(
+    data: {
+      title: "new post #2"
+      body: ""
+      published: true
+      author: { connect: { id: "ck74gjecd00iw0863jq9nlynq" } }
+    }
+  ) {
+    id
+    title
+    body
+    author {
+      id
+      name
+    }
+  }
+}
+
+# ver B
+mutation {
+  createPost(
+    data: {
+      title: "new post #3"
+      body: ""
+      published: true
+      author: "ck74gjecd00iw0863jq9nlynq"
+    }
+  ) {
+    id
+    title
+    body
+    author {
+      id
+      name
+    }
+  }
+}
+
+query {
+  posts {
+    id
     published
   }
 }
 
-mutation updateComment {
+query {
+  posts {
+    id
+    title
+    body
+    published
+    author {
+      id
+      name
+    }
+  }
+}
+
+mutation {
+  deleteUser(id: "ck736e1rc00qk0863eggqyh1o") {
+    id
+    name
+    email
+  }
+}
+
+mutation {
+  createPost(
+    data: {
+      title: "new post #2"
+      body: "React classes"
+      published: true
+      author: "ck74gjecd00iw0863jq9nlynq"
+    }
+  ) {
+    id
+    title
+    body
+    author {
+      id
+      name
+    }
+  }
+}
+
+mutation {
   updateComment(
-    id: "ck81gov0700ja0805c4svg6ir"
-    data: { text: "corrected comment" }
+    id: "ck750bv7h01za0863y1zv2pby"
+    data: { text: "one more comment" }
+  ) {
+    id
+    author {
+      name
+    }
+  }
+}
+
+mutation {
+  createComment(
+    data: {
+      text: "Good for you 2"
+      author: "ck74gjecd00iw0863jq9nlynq"
+      post: "ck74ohx2q01c40863tcqgwzej"
+    }
   ) {
     id
     text
   }
 }
 
-mutation createUser {
+mutation {
+  updatePost(
+    id: "ck74zp1l901ut0863d5gywmmx"
+    data: { published: false, title: "Node Classes 2", body: "Learning NodeJs" }
+  ) {
+    id
+    body
+    title
+    published
+    author {
+      name
+    }
+  }
+}
+
+mutation {
+  deletePost(id: "ck74hcl0000r50863nv6mbg71") {
+    id
+    title
+    body
+    published
+  }
+}
+
+subscription {
+  comment(postId: "ck74ohx2q01c40863tcqgwzej") {
+    mutation
+    node {
+      id
+      text
+      author {
+        id
+        name
+      }
+    }
+  }
+}
+
+subscription {
+  post {
+    mutation
+    node {
+      id
+      title
+      author {
+        id
+        name
+      }
+    }
+  }
+}
+
+# Password stage 1 -------------------------------- ***
+
+mutation {
   createUser(
-    data: { name: "Arvi Lind", email: "arvi@yle.fi", password: "red12345" }
+    data: { name: "Lasse Aro", email: "lasse@gmail.com", password: "red12345" }
   ) {
     user {
-      id
       name
       email
     }
@@ -174,30 +353,23 @@ mutation createUser {
   }
 }
 
-query users {
-  users {
-    id
-    name
-    email
-  }
-}
-
-mutation login {
-  login(data: { email: "arvi@yle.fi", password: "red12345" }) {
+mutation {
+  login(data: { email: "lasse@gmail.com", password: "red12345" }) {
     user {
-      name
       id
+      name
     }
     token
   }
 }
 
-mutation createPost {
+mutation {
   createPost(
-    data: { title: "Post under JWT A", body: "test post", published: true }
+    data: { title: "This is with JWT in place #2", body: "", published: false }
   ) {
     id
     title
+    body
     published
     author {
       id
@@ -206,59 +378,161 @@ mutation createPost {
   }
 }
 
-
-# After Auth
-
-mutation createUser {
-  createUser(data: {
-    name: "Arvi Lind", 
-    email: "arvi@yle.fi",
-    password: "red12345"
-  }) {
-	user {
-    id
-    name
-    email
-  }
-    token
-  }
-}
-
-query users {
-  users {
+mutation {
+  updateUser(data: { name: "Erik" }) {
     id
     name
     email
   }
 }
 
-mutation login{
-  login(data:{
-    email: "samuli@example.com",
-    password: "red12345"
-  }){
-    user {
-      name
-      id
-    }
-    token
-  }
-}
-
-mutation updateUser {
-  updateUser(
-    data: {
-    name: "Samuli Into Saarela" }) {
-    id
-    name
-    email
-  }
-}
-
-mutation deleteUser {
+# user can delete only oneself
+mutation {
   deleteUser {
     id
     name
+    email
   }
 }
 
+mutation {
+  updatePost(
+    id: "ck76dlo24008j0863byc54zre"
+    data: { published: true, title: "Timos's post 2" }
+  ) {
+    id
+    body
+    title
+    published
+    author {
+      name
+    }
+  }
+}
+
+mutation {
+  deleteComment(id: "ck76fti7000cd0863cbktvzaj") {
+    id
+  }
+}
+
+query {
+  post(id: "ck76fsfuk00c70863yw3vvrt3") {
+    id
+    title
+    body
+    published
+  }
+}
+
+mutation {
+  deleteComment(id: "ck76fti7000cd0863cbktvzaj") {
+    id
+  }
+}
+
+query {
+  post(id: "ck76fsfuk00c70863yw3vvrt3") {
+    id
+    title
+    body
+    published
+  }
+}
+
+query {
+  posts {
+    id
+    published
+    title
+    body
+    comments {
+      id
+      text
+    }
+  }
+}
+
+query {
+  myPosts {
+    id
+    published
+    title
+    body
+    comments {
+      id
+      text
+    }
+  }
+}
+
+mutation {
+  updateComment(
+    id: "ck76gxg8c00fz0863pw3tysul"
+    data: { text: "still one more comment from Lasse --> updated" }
+  ) {
+    id
+    author {
+      name
+    }
+  }
+}
+
+query {
+  comments {
+    id
+    text
+    author {
+      id
+      name
+      posts {
+        id
+        title
+        published
+      }
+    }
+  }
+}
+
+# Fragments
+
+query {
+  users {
+    ...userFields
+  }
+}
+
+fragment userFields on User {
+  id
+  name
+  email
+}
+
+query {
+  users {
+    ...userFields
+    email
+  }
+}
+
+fragment userFields on User {
+  id
+  name
+  email
+  posts {
+    id
+  }
+}
+
+# with fragments only published are shown
+
+query {
+  users {
+    email
+    posts {
+      id
+      title
+      published
+    }
+  }
+}
