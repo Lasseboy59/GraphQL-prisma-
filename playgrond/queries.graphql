@@ -205,3 +205,60 @@ mutation createPost {
     }
   }
 }
+
+
+# After Auth
+
+mutation createUser {
+  createUser(data: {
+    name: "Arvi Lind", 
+    email: "arvi@yle.fi",
+    password: "red12345"
+  }) {
+	user {
+    id
+    name
+    email
+  }
+    token
+  }
+}
+
+query users {
+  users {
+    id
+    name
+    email
+  }
+}
+
+mutation login{
+  login(data:{
+    email: "samuli@example.com",
+    password: "red12345"
+  }){
+    user {
+      name
+      id
+    }
+    token
+  }
+}
+
+mutation updateUser {
+  updateUser(
+    data: {
+    name: "Samuli Into Saarela" }) {
+    id
+    name
+    email
+  }
+}
+
+mutation deleteUser {
+  deleteUser {
+    id
+    name
+  }
+}
+
