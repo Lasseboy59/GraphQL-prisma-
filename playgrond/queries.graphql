@@ -530,3 +530,181 @@ query {
     }
   }
 }
+
+mutation createUser {
+  createUser(data: {
+    name: "Timo Tapio", 
+    email: "timo@yle.fi",
+    password: "red12345"
+  }) {
+	user {
+    id
+    name
+    email
+  }
+    token
+  }
+}
+
+query users {
+  users {
+    id
+    name
+    email
+  }
+}
+
+mutation login{
+  login(data:{
+    email: "arvi@yle.fi",
+    password: "red12345"
+  }){
+    user {
+      name
+      id
+    }
+    token
+  }
+}
+
+mutation updateUser {
+  updateUser(
+    data: {
+    name: "Samuli Into Saarela" }) {
+    id
+    name
+    email
+  }
+}
+
+mutation deleteUser {
+  deleteUser {
+    id
+    name
+  }
+}
+
+query Posts {
+  posts {
+		id
+  }
+  comments {
+    id
+    text
+    author {
+      name
+      id
+    }
+  }
+}
+
+mutation deletePost {
+  deletePost(id:"ck8350dyc004d0805no3evw8e"){
+    title
+    body
+    published
+  }
+}
+
+mutation updatePost{
+  updatePost(
+      id: "ck8358y8a004n0805yvs3ufqz"
+    data: {
+      published: true
+      title: "Arvi's post jwt"
+    }
+  ){
+    id
+    body
+    title
+    published
+    author {
+      name
+    }
+  }
+}
+
+mutation deleteComment {
+  deleteComment(id: "ck836y1it005f0805nlwahvc6") {
+    id
+  }
+}
+
+mutation updateComment {
+  updateComment(
+    id: "ck838hn64006o08052zo5nxdi"
+    data: { 
+      text: "Arvi --> updated" }
+  ) {
+    id
+    author {
+      name
+    }
+  }
+}
+
+mutation createPost {
+  createPost(
+    data: {
+      title: "Post under JWT by Arvi"
+      body: "test post"
+      published: true
+    }
+  ) {
+    id
+    title
+    published
+    author {
+      id
+      name
+    }
+  }
+}
+
+
+mutation createComment{
+  createComment(
+    data: {
+      text: "jtesting with Auth",
+      post: "ck8358y8a004n0805yvs3ufqz"
+    }){
+    id
+    text
+  }
+}
+
+query post {
+  post(id: "ck8358y8a004n0805yvs3ufqz"){
+    id
+    title
+    published
+  }
+}
+
+mutation updateComment {
+  updateComment(
+    id: "ck81gov0700ja0805c4svg6ir"
+    data: { text: "corrected comment" }
+  ) {
+    id
+    text
+  }
+}
+
+# Fragments
+
+query users {
+  users {
+		...userFields
+    email
+  }
+}
+
+fragment userFields on User {
+  id
+  name
+	posts {
+    id
+  }
+}
+
