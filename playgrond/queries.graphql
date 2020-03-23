@@ -425,12 +425,6 @@ query {
   }
 }
 
-mutation {
-  deleteComment(id: "ck76fti7000cd0863cbktvzaj") {
-    id
-  }
-}
-
 query {
   post(id: "ck76fsfuk00c70863yw3vvrt3") {
     id
