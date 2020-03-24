@@ -1,3 +1,4 @@
-endpoint: http://localhost:4466
+#endpoint: ${env:PRISMA_ENDPOINT}
+endpoint: https://lauris-blogging-app-3d8b52d6d8.herokuapp.com/lauris-blogging-app/prod
 datamodel: datamodel.graphql
 secret: mylongsupersecretkey
