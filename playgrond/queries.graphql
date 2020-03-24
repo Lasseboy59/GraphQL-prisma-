@@ -697,9 +697,23 @@ fragment userFields on User {
 # Pagination
 
 query PostsShort {
-  posts(first: 2, skip: 0) {
+  posts(first: 2,
+  skip:0,
+  after: "ck836xl3f005808056q9ps0tr") {
     id
     title
     body
   }
 }
+
+query usersShort {
+  users(first: 5,
+  skip: 0,
+    after: "ck834oly3003u08058tsj808c"
+  ){
+    id
+    name
+    email
+  }
+}
+
