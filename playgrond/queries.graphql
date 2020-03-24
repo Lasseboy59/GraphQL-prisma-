@@ -532,16 +532,14 @@ query {
 }
 
 mutation createUser {
-  createUser(data: {
-    name: "Timo Tapio", 
-    email: "timo@yle.fi",
-    password: "red12345"
-  }) {
-	user {
-    id
-    name
-    email
-  }
+  createUser(
+    data: { name: "Timo Tapio", email: "timo@yle.fi", password: "red12345" }
+  ) {
+    user {
+      id
+      name
+      email
+    }
     token
   }
 }
@@ -554,11 +552,8 @@ query users {
   }
 }
 
-mutation login{
-  login(data:{
-    email: "arvi@yle.fi",
-    password: "red12345"
-  }){
+mutation login {
+  login(data: { email: "arvi@yle.fi", password: "red12345" }) {
     user {
       name
       id
@@ -568,9 +563,7 @@ mutation login{
 }
 
 mutation updateUser {
-  updateUser(
-    data: {
-    name: "Samuli Into Saarela" }) {
+  updateUser(data: { name: "Samuli Into Saarela" }) {
     id
     name
     email
@@ -586,7 +579,7 @@ mutation deleteUser {
 
 query Posts {
   posts {
-		id
+    id
   }
   comments {
     id
@@ -599,21 +592,18 @@ query Posts {
 }
 
 mutation deletePost {
-  deletePost(id:"ck8350dyc004d0805no3evw8e"){
+  deletePost(id: "ck8350dyc004d0805no3evw8e") {
     title
     body
     published
   }
 }
 
-mutation updatePost{
+mutation updatePost {
   updatePost(
-      id: "ck8358y8a004n0805yvs3ufqz"
-    data: {
-      published: true
-      title: "Arvi's post jwt"
-    }
-  ){
+    id: "ck8358y8a004n0805yvs3ufqz"
+    data: { published: true, title: "Arvi's post jwt" }
+  ) {
     id
     body
     title
@@ -633,8 +623,7 @@ mutation deleteComment {
 mutation updateComment {
   updateComment(
     id: "ck838hn64006o08052zo5nxdi"
-    data: { 
-      text: "Arvi --> updated" }
+    data: { text: "Arvi --> updated" }
   ) {
     id
     author {
@@ -661,20 +650,17 @@ mutation createPost {
   }
 }
 
-
-mutation createComment{
+mutation createComment {
   createComment(
-    data: {
-      text: "jtesting with Auth",
-      post: "ck8358y8a004n0805yvs3ufqz"
-    }){
+    data: { text: "jtesting with Auth", post: "ck8358y8a004n0805yvs3ufqz" }
+  ) {
     id
     text
   }
 }
 
 query post {
-  post(id: "ck8358y8a004n0805yvs3ufqz"){
+  post(id: "ck8358y8a004n0805yvs3ufqz") {
     id
     title
     published
@@ -695,7 +681,7 @@ mutation updateComment {
 
 query users {
   users {
-		...userFields
+    ...userFields
     email
   }
 }
@@ -703,8 +689,17 @@ query users {
 fragment userFields on User {
   id
   name
-	posts {
+  posts {
     id
   }
 }
 
+# Pagination
+
+query PostsShort {
+  posts(first: 2, skip: 0) {
+    id
+    title
+    body
+  }
+}
