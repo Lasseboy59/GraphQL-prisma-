@@ -1,4 +1,3 @@
-#endpoint: ${env:PRISMA_ENDPOINT}
-endpoint: https://lauris-blogging-app-3d8b52d6d8.herokuapp.com/lauris-blogging-app/prod
+endpoint: ${env:PRISMA_ENDPOINT}
 datamodel: datamodel.graphql
 secret: mylongsupersecretkey
