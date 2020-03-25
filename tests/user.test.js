@@ -27,5 +27,5 @@ test('Should reject password that contains word password', () => {
 test('Should correctly validate a valid password', () => {
   const isValid = isValidPassword('secret123')
 
-  expect(isValid).toBe(true)
+  expect(isValid ).toBe(true)
 })
