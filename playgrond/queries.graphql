@@ -717,3 +717,42 @@ query usersShort {
   }
 }
 
+# Variables
+
+mutation($name:String!,
+$email:String!,
+$password:String!) {
+  createUser(data: {
+    name: $name, 
+    email: $email,
+    password:$password
+  }) {
+	user {
+    id
+    name
+    email
+  }
+    token
+  }
+}
+
+# Variables II
+mutation($data:CreateUserInput!) {
+  createUser(data: $data) {
+	user {
+    id
+    name
+    email
+  }
+    token
+  }
+}
+
+{
+  "data": {
+		"name":"Ben",
+    "email": "ben@example.com",
+    "password": "red12345"
+  }
+}
+
