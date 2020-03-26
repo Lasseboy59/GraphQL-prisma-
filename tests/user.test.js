@@ -103,3 +103,36 @@ test('Should expose only puhlished posts', async () => {
   expect(response.data.posts.length).toBe(1)
   expect(response.data.posts[0].published).toBe(true)
 })
+
+test('Should not signup user with invalid password', async () => {
+  const login = gql`
+    mutation {
+      login(
+        data: {
+          email: "timo@example.com",
+          password: "Secret123"
+        }
+      ){
+        token
+      }
+    }
+  `
+  await expect(client.mutate({ mutation: login })).rejects.toThrow()
+})
+
+test('Should not signup user with invalid password', async () => {
+  const createUser = gql`
+    mutation {
+      createUser(
+        data: {
+          name: "Lasse"
+          email: "lasse@example.com",
+          password: "secret"
+        }
+      ){
+        token
+      }
+    }
+  `
+  await expect(client.mutate({ mutation: createUser })).rejects.toThrow()
+})
