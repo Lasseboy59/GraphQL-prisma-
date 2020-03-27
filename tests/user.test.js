@@ -1,5 +1,4 @@
 import 'cross-fetch/polyfill'
-import { gql } from 'apollo-boost'
 import prisma from '../src/prisma'
 import seedDatabase, { userOne } from './utils/seedDatabase'
 import getClient from './utils/getClient'
@@ -17,10 +16,7 @@ test('Should create a new user', async () => {
       password: 'secret123'
     }
   }
-  const response = await client.mutate({
-    mutation: createUser,
-    variables
-  })
+  const response = await client.mutate({ mutation: createUser, variables })
 
   const exists = await prisma.exists.User({ id: response.data.createUser.user.id })
   expect(exists).toBe(true)
@@ -39,6 +35,7 @@ test('Should not signup user with invalid password', async () => {
     data: {
       email: "timo@example.com",
       password: "secret1234"
+      // secret123
     }
   }
 
