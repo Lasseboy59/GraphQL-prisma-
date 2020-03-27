@@ -28,19 +28,19 @@ test('Should not delete other users comments', async () => {
   ).rejects.toThrow()
 })
 
-test('Should subscribe to comments for a post', async (done) => {
-  const variables = {
-    postId: postOne.post.id
-  }
-  client.subscribe({ query: subscribeToComments, variables }).subscribe({
-    next(response) {
-      expect(response.data.comment.mutation).toBe('DELETED')
-      done()
-    }
-  })
+// test('Should subscribe to comments for a post', async (done) => {
+//   const variables = {
+//     postId: postOne.post.id
+//   }
+//   client.subscribe({ query: subscribeToComments, variables }).subscribe({
+//     next(response) {
+//       expect(response.data.comment.mutation).toBe('DELETED')
+//       done()
+//     }
+//   })
 
-  await prisma.mutation.deleteComment({ where: { id: commentOne.comment.id } })
-})
+//   await prisma.mutation.deleteComment({ where: { id: commentOne.comment.id } })
+// })
 
 // test('Should subscribe to changes for published posts', async (done) => {
 //   client.subscribe({ query: subscribeToPosts }).subscribe({
